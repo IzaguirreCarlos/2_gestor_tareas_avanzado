@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Organiza tu trabajo. Controla tus tareas. Avanza sin estrés.</h1>
+
+    <p class="hero-subtitle">
+      TaskFlow es tu gestor de tareas estilo Trello, creado para mantener tus proyectos claros,
+      tus prioridades visibles y tu equipo sincronizado en un solo lugar.
+    </p>
+
+    <div class="hero-actions">
+      {% if user.is_authenticated %}
+        <a href="{% url 'boards:list' %}" class="btn-primary">Ir a mis tableros</a>
+        <a href="{% url 'boards:task_list' %}" class="btn-secondary">Ver mis tareas</a>
+      {% else %}
+        <a href="{% url 'accounts:register' %}" class="btn-primary">Crear cuenta gratis</a>
+        <a href="{% url 'accounts:login' %}" class="btn-secondary">Iniciar sesión</a>
+      {% endif %}
+    </div>
+
+    <div class="hero-features">
+      <span>✅ Tableros</span>
+      <span>✅ Columnas</span>
+      <span>✅ Tareas</span>
+      <span>✅ Etiquetas</span>
+      <span>✅ Prioridad</span>
+      <span>✅ Fechas límite</span>
+      
+      <!-- NUEVO: TARJETAS FEATURES -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>📌 Organización clara</h3>
+        <p>
+          Divide tus proyectos por tableros, columnas y tareas. Visualiza todo en segundos.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>⚡ Flujo rápido</h3>
+        <p>
+          Mueve tareas entre columnas con drag & drop y mantén tu progreso siempre actualizado.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>👥 Trabajo en equipo</h3>
+        <p>
+          Asigna tareas, agrega miembros al tablero y mantén a todos sincronizados.
+        </p>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</section>
+{% endblock %}

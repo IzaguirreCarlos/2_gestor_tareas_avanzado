@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Tareas</h2>
+
+<div class="board-container">
+  {% for task in tasks %}
+    <div class="task-card">
+      <strong>{{ task.title }}</strong>
+
+      <p>
+        📋 Tablero: {{ task.task_list.board.name }} <br>
+        📌 Columna: {{ task.task_list.title }}
+      </p>
+
+      <a href="{% url 'boards:detail' task.task_list.board.id %}">
+        Ir al tablero
+      </a>
+    </div>
+  {% empty %}
+    <p>No hay tareas creadas</p>
+  {% endfor %}
+</div>
+{% endblock %}

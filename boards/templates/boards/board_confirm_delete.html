@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Eliminar Tablero</h2>
+
+<p>¿Seguro que deseas eliminar el tablero "<strong>{{ board.name }}</strong>"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'boards:list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

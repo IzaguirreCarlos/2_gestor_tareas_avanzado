@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>{{ board.name }}</h2>
+<!-- EXPORTACION DE TAREAS A CSV -->
+<div class="board-actions">
+  <a href="{% url 'boards:export_tasks_csv' board.id %}" class="btn-export">
+    📥 Exportar tareas a CSV
+  </a>
+</div>
+
+
+<a href="{% url 'boards:export_my_tasks_csv' %}" class="btn-export">
+  📥 Exportar MIS tareas (CSV)
+</a>
+
+
+<div class="board-container">
+  {% for list in board.lists.all %}
+    <div class="list">
+      <h4>{{ list.title }}</h4>
+
+      <!-- ========================= -->
+      <!-- SECCIÓN ETIQUETAS (LABELS) -->
+      <!-- ========================= -->
+      <div class="labels-section">
+        <div class="labels-container">
+          {% for label in list.labels.all %}
+            <div class="label-item">
+              <span class="label label-{{ label.color }}">{{ label.name }}</span>
+
+              <form method="POST" action="{% url 'boards:label_delete' label.id %}">
+                {% csrf_token %}
+                <button class="delete-label" type="submit" title="Eliminar etiqueta">✖</button>
+              </form>
+            </div>
+          {% empty %}
+            <small class="labels-empty">Sin etiquetas</small>
+          {% endfor %}
+        </div>
+
+        <!-- Form para crear etiqueta -->
+        <form method="POST" action="{% url 'boards:label_create' list.id %}" class="label-form">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Nueva etiqueta" required>
+
+          <select name="color">
+            <option value="gray">Gris</option>
+            <option value="red">Rojo</option>
+            <option value="green">Verde</option>
+            <option value="blue">Azul</option>
+            <option value="yellow">Amarillo</option>
+            <option value="purple">Morado</option>
+            <option value="orange">Naranja</option>
+          </select>
+
+          <button type="submit">+ Etiqueta</button>
+        </form>
+      </div>
+
+      <!-- ================= -->
+      <!-- TAREAS DE LA LISTA -->
+      <!-- ================= -->
+      <div class="tasks"
+           data-list-id="{{ list.id }}"
+           ondrop="drop(event)"
+           ondragover="allowDrop(event)">
+
+        {% for task in list.tasks.all|dictsort:"order" %}
+          <div class="task-card"
+               draggable="true"
+               ondragstart="drag(event)"
+               data-task-id="{{ task.id }}">
+
+            <!-- LABELS DE LA TAREA -->
+            {% if task.labels.all %}
+              <div class="task-labels">
+                {% for label in task.labels.all %}
+                  <span class="label label-{{ label.color }}">{{ label.name }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="task-title">
+              {{ task.title }}
+            </div>
+
+            <!-- PRIORIDAD -->
+            <div class="task-priority priority-{{ task.priority }}">
+              <div class="task-priority priority-{{ task.priority }}">
+  {% if task.priority == "high" %}
+    🚨 {{ task.get_priority_display }}
+  {% elif task.priority == "medium" %}
+    🔧 {{ task.get_priority_display }}
+  {% else %}
+    💤 {{ task.get_priority_display }}
+  {% endif %}
+</div>
+
+
+            </div>
+
+            <!-- FECHA LÍMITE -->
+            {% if task.due_date %}
+              <div class="task-due-date">
+                📅 {{ task.due_date }}
+              </div>
+            {% endif %}
+
+            <!-- Select para reasignar usuario SIN recargar -->
+            <div class="assigned-user">
+              <select class="reassign-select" data-task-id="{{ task.id }}">
+                <option value="">-- Sin asignar --</option>
+                {% for user in members %}
+                  <option value="{{ user.id }}"
+                    {% if task.assigned_to and task.assigned_to.id == user.id %}selected{% endif %}>
+                    {{ user.username }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+          </div>
+        {% empty %}
+          <small>No hay tareas</small>
+        {% endfor %}
+      </div>
+
+      <!-- ========================= -->
+      <!-- FORM CREAR NUEVA TAREA -->
+      <!-- ========================= -->
+      <form method="post" class="task-create-form">
+        {% csrf_token %}
+        <input type="hidden" name="list_id" value="{{ list.id }}">
+        <input type="text" name="task_title" placeholder="Nueva tarea" required>
+
+        <label>Asignar a:</label>
+        <select name="assigned_to">
+          <option value="">-- Sin asignar --</option>
+          {% for user in members %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+          {% endfor %}
+        </select>
+
+        <!-- PRIORIDAD -->
+        <label>Prioridad:</label>
+        <select name="priority">
+          <option value="low">Baja</option>
+          <option value="medium" selected>Media</option>
+          <option value="high">Alta</option>
+        </select>
+
+        <!-- FECHA LÍMITE -->
+        <label>Fecha límite:</label>
+        <input type="date" name="due_date">
+
+        <button type="submit">+</button>
+      </form>
+    </div>
+  {% endfor %}
+
+  <!-- ========================= -->
+  <!-- FORM CREAR NUEVA COLUMNA -->
+  <!-- ========================= -->
+  <div class="list new-list">
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="list_title" placeholder="Nueva columna" required>
+      <button type="submit">Añadir</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<script src="{% static 'js/dragdrop.js' %}"></script>
+
+<script>
+  // Obtener CSRF token desde cookies (forma correcta para AJAX)
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const selects = document.querySelectorAll('.reassign-select');
+    const csrftoken = getCookie('csrftoken');
+
+    selects.forEach(select => {
+      select.addEventListener('change', (e) => {
+        const taskId = e.target.dataset.taskId;
+        const assignedTo = e.target.value;
+
+        fetch("{% url 'boards:reassign_task' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": csrftoken
+          },
+          body: `task_id=${taskId}&assigned_to=${assignedTo}`
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status !== "ok") {
+            alert(data.message || "Error al reasignar tarea");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Error de conexión al reasignar tarea");
+        });
+      });
+    });
+  });
+</script>
+{% endblock %}

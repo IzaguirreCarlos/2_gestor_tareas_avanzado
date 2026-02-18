@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Mis Tareas</h2>
+
+<div class="my-tasks-container">
+  {% if tasks %}
+    {% for task in tasks %}
+      <div class="task-card">
+        <strong>{{ task.title }}</strong><br>
+        <small>Tablero: {{ task.task_list.board.name }}</small><br>
+        <small>Columna: {{ task.task_list.title }}</small><br>
+        {% if task.due_date %}
+          <small>Fecha límite: {{ task.due_date }}</small><br>
+        {% endif %}
+        {% if task.priority %}
+          <small>Prioridad: {{ task.get_priority_display }}</small>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No tienes tareas asignadas.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}

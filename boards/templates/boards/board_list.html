@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Mis Tableros</h2>
+
+<!-- Botón para crear un tablero nuevo -->
+<a href="{% url 'boards:create' %}">➕ Nuevo tablero</a>
+
+<!-- Lista de tableros -->
+<ul>
+  {% for board in boards %}
+
+   <!-- BOTONES -->
+ <a href="{% url 'boards:board_edit' board.id %}" class="perro">
+  ✏️ Editar
+ </a>
+
+ <a href="{% url 'boards:board_delete' board.id %}" class="gato"></a>
+  🗑️ Eliminar
+
+    <li>
+      <!-- Link para entrar al tablero -->
+      <a href="{% url 'boards:detail' board.id %}">{{ board.name }}</a>
+    </li>
+  {% empty %}
+    <li>No tienes tableros aún</li>
+  {% endfor %}
+</ul>
+{% endblock %}

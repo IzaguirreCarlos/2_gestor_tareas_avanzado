@@ -1,0 +1,38 @@
+{% load static %}
+
+<nav class="navbar">
+    <h2 class="logo">TaskFlow</h2>
+    
+       <div class="user-status">
+    {% if user.is_authenticated %}
+        <span class="logged-user">
+            <img src="{% static 'img/usuario-verificado.png' %}" width="70" height="80"
+           alt="Icono de usuario"
+           class="user-icon">
+
+             <strong>{{ user.username }}</strong>
+            <span class="ok">Usuario logueado: ✅ </span>
+        </span>
+    {% else %}
+        <span class="not-logged">
+            🔒 No hay usuarios logueados aún
+        </span>
+    {% endif %}
+</div>
+
+
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="{% url 'boards:list' %}">Tableros</a></li>
+        <li><a href="{% url 'boards:task_list' %}">Tareas</a></li>
+
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:profile' %}">Perfil</a></li>
+            <li><a href="{% url 'accounts:logout' %}">Salir</a></li>
+        {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Registrarse</a></li>
+        {% endif %}
+    </ul>
+</nav>
+

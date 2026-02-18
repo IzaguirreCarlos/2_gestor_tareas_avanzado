@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Crear Tablero</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="name" placeholder="Nombre del tablero" required>
+  <button type="submit">Crear</button>
+</form>
+
+<!-- Volver a lista de tableros -->
+<a href="{% url 'boards:list' %}">⬅ Volver a mis tableros</a>
+{% endblock %}

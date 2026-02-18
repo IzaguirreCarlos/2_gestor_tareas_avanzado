@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}Gestor de Tareas{% endblock %}</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<script>
+  document.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+
+    if (!navbar) return;
+
+    if (window.scrollY > 20) {
+      navbar.classList.add("navbar-scrolled");
+    } else {
+      navbar.classList.remove("navbar-scrolled");
+    }
+  });
+</script>
+
+<body>
+
+    <!-- Navbar -->
+    {% include 'include/navbar.html' %}
+
+    <!-- Contenido principal -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'include/footer.html' %}
+
+    <!-- JS EXTRA -->
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

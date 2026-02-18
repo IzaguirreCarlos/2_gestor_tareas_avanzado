@@ -1,0 +1,739 @@
+/* ===== RESET GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f5f7;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: #026aa7;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #e3e4e6;
+  padding: 12px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* =============================== */
+/* ===== TABLERO TIPO TRELLO ===== */
+/* =============================== */
+
+.board-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+/* ===== COLUMNAS ===== */
+.list {
+  background: #ebecf0;
+  border-radius: 10px;
+  width: 260px;
+  padding: 12px;
+  flex-shrink: 0;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.list:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.list h4 {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* ===== CONTENEDOR DE TAREAS ===== */
+.tasks {
+  min-height: 40px;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.25s ease;
+}
+
+/* Hover cuando se arrastra sobre la columna */
+.tasks:hover {
+  background: rgba(0, 121, 191, 0.12);
+}
+
+/* ===== TARJETAS ===== */
+.task-card {
+  background: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: grab;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  background: #fafbfc;
+}
+
+/* ===== TARJETA MIENTRAS SE ARRASTRA ===== */
+.task-card.dragging {
+  opacity: 0.6;
+  transform: rotate(2deg);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+  cursor: grabbing;
+}
+
+/* ===== NUEVA COLUMNA ===== */
+.new-list {
+  background: #e3e4e6;
+  padding: 12px;
+  border-radius: 10px;
+  min-width: 220px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease;
+}
+
+.new-list:hover {
+  background: #d9dbdd;
+}
+
+
+
+
+
+
+
+ /* --- Perfil de usuario --- */
+ .perro {
+  color: rgb(17, 18, 17);
+  background-color: lime;
+  align-content: center;
+  border-radius: 5px;
+  width: 120px;
+  height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 220px;
+  
+ }
+
+
+
+
+.logged {
+  font-size: 19px;
+  margin-left: 10px;
+  
+  font-weight: bold;
+}
+
+
+/* ===== RESET GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f5f7;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: #026aa7;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #e3e4e6;
+  padding: 12px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* =============================== */
+/* ===== TABLERO TIPO TRELLO ===== */
+/* =============================== */
+
+.board-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+/* ===== COLUMNAS ===== */
+.list {
+  background: #ebecf0;
+  border-radius: 10px;
+  width: 260px;
+  padding: 12px;
+  flex-shrink: 0;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.list:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.list h4 {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* ===== CONTENEDOR DE TAREAS ===== */
+.tasks {
+  min-height: 40px;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.25s ease;
+}
+
+/* Hover cuando se arrastra sobre la columna */
+.tasks:hover {
+  background: rgba(0, 121, 191, 0.12);
+}
+
+/* ===== TARJETAS ===== */
+.task-card {
+  background: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: grab;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  background: #fafbfc;
+}
+
+/* ===== TARJETA MIENTRAS SE ARRASTRA ===== */
+.task-card.dragging {
+  opacity: 0.6;
+  transform: rotate(2deg);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+  cursor: grabbing;
+}
+
+/* ===== NUEVA COLUMNA ===== */
+.new-list {
+  background: #e3e4e6;
+  padding: 12px;
+  border-radius: 10px;
+  min-width: 220px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease;
+}
+
+.new-list:hover {
+  background: #d9dbdd;
+}
+
+
+
+
+
+
+
+ /* --- Perfil de usuario --- */
+ .perro {
+  color: rgb(17, 18, 17);
+  background-color: lime;
+  align-content: center;
+  border-radius: 5px;
+  width: 120px;
+  height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 220px;
+  
+ }
+
+
+
+
+
+
+ 
+.user-status {
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.logged-user {
+  color: #fdfdfd;
+}
+
+.ok {
+  margin-left: 6px;
+  font-size: 14px;
+  color: #36cf40;
+  font-weight: 700;
+}
+
+.not-logged {
+  color: #2ff42f;
+}
+
+
+
+.user-icon {
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+
+
+
+
+.assigned-user select {
+    width: 100%;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+/* ===== LABELS ===== */
+.labels-section {
+  margin: 10px 0;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.labels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.labels-empty {
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.label-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.label {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+  font-weight: 700;
+}
+
+.label-red { background: #e74c3c; }
+.label-green { background: #2ecc71; }
+.label-blue { background: #3498db; }
+.label-yellow { background: #f1c40f; color: #222; }
+.label-gray { background: #7f8c8d; }
+.label-purple { background: #9b59b6; }
+.label-orange { background: #e67e22; }
+
+.label-form {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.label-form input,
+.label-form select {
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.label-form button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  background: #111;
+  color: white;
+}
+
+.delete-label {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e74c3c;
+}
+
+/* ===== TASK CARD EXTRAS ===== */
+.task-labels {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.task-priority {
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.priority-low { color: #27ae60; }
+.priority-medium { color: #2980b9; }
+.priority-high { color: #e81c05; }
+
+.task-due-date {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #555;
+}
+
+.task-create-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-create-form input,
+.task-create-form select {
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+
+
+/* = estilos a csv = */
+.board-actions{
+  margin: 15px 0 20px 0;
+  display: flex;
+  justify-content: flex-center;
+}
+
+.btn-export{
+  background: #22c55e;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-export:hover{
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+
+
+.btn-export{
+  background: #22c55e;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;   /* 👈 QUITA la línea */
+  display: inline-block;   /* 👈 para que se comporte como botón */
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-export:hover{
+  background: #16a34a;
+  transform: translateY(-2px);
+  text-decoration: none;   /* 👈 por si el navegador insiste */
+}
+ 
+
+
+
+/*  NUEVOS ESTILOS AL HOME*/
+
+ .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+
+
+.home-hero {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  line-height: 1.1;
+  color: #111827;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #111827;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.hero-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+
+
+
+/* Navbar normal */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background:#2563eb;
+  backdrop-filter: blur(12px);
+  transition: all 1.25s ease;
+}
+
+/* Navbar cuando haces scroll */
+.navbar.navbar-scrolled {
+  background: rgba(8, 20, 60, 0.95);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+
+
+
+
+
+
+
+
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+
+/* círculos decorativos */
+.home-hero::before,
+.home-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.home-hero::before {
+  width: 340px;
+  height: 340px;
+  top: -120px;
+  left: -120px;
+  background: #60a5fa;
+}
+
+.home-hero::after {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  right: -140px;
+  background: #a78bfa;
+}
+
+/* Para que el texto quede arriba del fondo */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.features-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  padding: 18px 18px;
+  text-align: left;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+  transition: 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+

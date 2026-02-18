@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva tarea asignada</title>
+</head>
+<body style="font-family: Arial, sans-serif; background:#f4f6f9; padding:20px;">
+
+  <div style="max-width:600px; margin:auto; background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+
+    <div style="background:#4f46e5; padding:20px; color:white;">
+      <h2 style="margin:0;">📌 Nueva tarea asignada</h2>
+    </div>
+
+    <div style="padding:20px;">
+      <p style="font-size:16px;">Hola <b>{{ user.username }}</b> 👋</p>
+
+      <p>Se te asignó una nueva tarea en el gestor:</p>
+
+      <div style="background:#f9fafb; padding:15px; border-radius:10px; border:1px solid #e5e7eb;">
+        <p><b>📌 Tarea:</b> {{ task.title }}</p>
+        <p><b>📋 Tablero:</b> {{ board.name }}</p>
+        <p><b>📂 Columna:</b> {{ task_list.title }}</p>
+        <p><b>⚡ Prioridad:</b> {{ task.priority }}</p>
+        <p><b>📅 Fecha límite:</b>
+          {% if task.due_date %}
+            {{ task.due_date }}
+          {% else %}
+            No definida
+          {% endif %}
+        </p>
+      </div>
+
+      {% if board_url %}
+        <div style="text-align:center; margin-top:25px;">
+          <a href="{{ board_url }}"
+             style="background:#4f46e5; color:white; padding:12px 22px; border-radius:10px; text-decoration:none; font-weight:bold; display:inline-block;">
+             Ver tarea en el tablero 🚀
+          </a>
+        </div>
+      {% endif %}
+
+      <p style="margin-top:30px; font-size:13px; color:#6b7280;">
+        Este correo fue enviado automáticamente por el Gestor de Tareas.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
