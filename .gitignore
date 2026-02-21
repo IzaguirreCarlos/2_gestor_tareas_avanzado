@@ -24,5 +24,9 @@ env/
 .DS_Store
 Thumbs.db
 
+sent_emails/
+
+# Sistema
+.DS_Store
 
 config/settings.py
