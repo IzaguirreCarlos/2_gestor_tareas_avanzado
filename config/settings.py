@@ -11,7 +11,7 @@ TEMPLATES_DIR = BASE_DIR / "config" / "templates"
 # Seguridad
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['.onrender.com']  # Render usará tu dominio .onrender.com
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')  # Render usará tu dominio .onrender.com
 
 # Aplicaciones
 INSTALLED_APPS = [
@@ -61,11 +61,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Base de datos externa
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"postgres://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-    )
-}
-
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+ }
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
