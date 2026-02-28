@@ -61,7 +61,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Base de datos externa
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
  }
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
