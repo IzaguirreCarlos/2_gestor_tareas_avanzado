@@ -61,9 +61,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Base de datos externa
 DATABASES = {
-    print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
- }
-# Password validation
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
