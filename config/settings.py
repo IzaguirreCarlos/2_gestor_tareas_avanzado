@@ -12,7 +12,7 @@ TEMPLATES_DIR = BASE_DIR / "config" / "templates"
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 # Render usará tu dominio .onrender.com
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "gestor-tareas-avanzado.onrender.com").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "two-gestor-tareas-avanzado.onrender.com").split(",")
 
 # Aplicaciones
 INSTALLED_APPS = [
