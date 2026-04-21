@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-body">
+
+    <div class="auth-page">
+
+        <!-- Panel decorativo izquierdo (oculto en móvil) -->
+        <aside class="auth-side">
+            <div class="auth-side-inner">
+                <div class="auth-brand-large">
+                    <span class="auth-brand-icon">⬡</span>
+                    <span class="auth-brand-name">TaskFlow</span>
+                </div>
+                <p class="auth-side-tagline">Organiza tu trabajo.<br>Colabora mejor.<br>Logra más.</p>
+                <div class="auth-side-features">
+                    <div class="auth-side-feature">
+                        <span class="auth-feature-dot"></span>
+                        Tableros tipo Kanban
+                    </div>
+                    <div class="auth-side-feature">
+                        <span class="auth-feature-dot"></span>
+                        Gestión de tareas y prioridades
+                    </div>
+                    <div class="auth-side-feature">
+                        <span class="auth-feature-dot"></span>
+                        Trabajo en equipo
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Panel principal con formulario -->
+        <main class="auth-main">
+
+            <!-- Marca en móvil -->
+            <div class="auth-brand-mobile">
+                <span class="auth-brand-icon">⬡</span>
+                <span class="auth-brand-name">TaskFlow</span>
+            </div>
+
+            <div class="auth-card">
+
+                <!-- Mensajes globales (errores/éxito) -->
+                {% if messages %}
+                    <div class="auth-messages">
+                        {% for message in messages %}
+                            <div class="auth-alert auth-alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% block auth_content %}{% endblock %}
+
+            </div>
+
+            <p class="auth-footer-note">
+                © 2025 TaskFlow · <a href="/">Inicio</a>
+            </p>
+
+        </main>
+    </div>
+
+    {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

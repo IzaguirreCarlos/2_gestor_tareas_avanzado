@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 # Create your views here.
 
 # Registro
@@ -33,7 +32,7 @@ def register_view(request):
 # ==============================
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -41,7 +40,7 @@ def login_view(request):
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
 
