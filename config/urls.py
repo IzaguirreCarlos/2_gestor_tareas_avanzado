@@ -21,8 +21,8 @@ app_name = 'config'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('boards/', include('boards.urls')),  # URLs de tableros
-    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('', include('apps.core.urls')),
+    path('boards/', include('apps.boards.urls')),
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
     
 ]
